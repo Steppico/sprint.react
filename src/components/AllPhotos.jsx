@@ -7,7 +7,7 @@ export default class AllPhotos extends Component {
   }
 
   render() {
-    console.log("In AllPhotos");
+    console.log("In AllPhotos", this.props);
     return (
       <div>
         {this.props.photos.map(photo => {
@@ -19,7 +19,9 @@ export default class AllPhotos extends Component {
               height="100px"
               key={this.props.photos.indexOf(photo)}
               src={`data:image/png;base64,${photo}`}
-              onClick={this.props.selectPhoto(this.props.photos.indexOf(photo))}
+              onClick={() => {
+                this.props.selectPhoto(this.props.photos.indexOf(photo));
+              }}
             />
           );
         })}

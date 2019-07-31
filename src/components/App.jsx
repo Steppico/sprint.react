@@ -61,7 +61,10 @@ export default class App extends Component {
             selectPhoto={this.selectPhoto}
           />
         ) : (
-          <SinglePhoto selectedPhoto={this.state.selectedPhoto} />
+          <SinglePhoto
+            selectedPhoto={this.state.selectedPhoto}
+            goHome={this.goHome}
+          />
         )}
       </div>
     );
