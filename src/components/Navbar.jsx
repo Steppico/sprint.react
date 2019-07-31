@@ -8,14 +8,16 @@ export default class Navbar extends Component {
     super(props);
   }
 
-  receiveFiles() {}
+  receiveFiles() {
+    return this.props.getPhotos();
+  }
 
   render() {
     return (
       <div>
         <div className="navbar" />
         <header className="navbar-header" onClick={this.props.goHome}></header>
-        <Upload receiveFiles={this.props.getPhotos} />
+        <Upload receiveFiles={this.receiveFiles} />
       </div>
     );
   }

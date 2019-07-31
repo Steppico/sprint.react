@@ -17,10 +17,12 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    listObjects().then(datas =>
-      datas.map(data =>
-        getSingleObject(data.Key).then(key => this.state.photos.push(key))
-      )
+    return listObjects().then(imageObjects =>
+      Promise.all(
+        imageObjects.map(imageObject =>
+          getSingleObject(imageObject.Key).then(imageName => imageName)
+        )
+      ).then(imageNames => this.setState({ photos: imageNames }))
     );
   }
 
@@ -31,20 +33,28 @@ export default class App extends Component {
     });
   };
 
-  getPhotos = () => {};
+  getPhotos = () => {
+    console.log("In the getPhotos Function; ", this.state.photos);
+    return this.state.photos;
+  };
 
   goHome = () => {
     this.setState({
       currentView:
-        this.state.currentView === "AllPhotos" ? "SinglePhoto" : "AllPhotos"
+        this.state.currentView === "SinglePhoto" ? "AllPhotos" : "SinglePhoto"
     });
   };
 
   render() {
+    console.log("some comment", this.state.currentView === "AllPhotos");
     return (
       <div className="app">
-        <Navbar goHome={this.goHome} getPhotos={this.getPhotos} />
-        <h1>TAKASHI RAKUGAKI (PRINCIPESSA TAKASHI)!</h1>
+        <Navbar
+          className="navbar"
+          goHome={this.goHome}
+          getPhotos={this.getPhotos}
+        />
+        <h1>REACT APP!</h1>
         {this.state.currentView === "AllPhotos" ? (
           <AllPhotos
             photos={this.state.photos}
