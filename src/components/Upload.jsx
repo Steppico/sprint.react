@@ -1,28 +1,44 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import "../styles/upload.css";
-import fs from "fs";
+import { saveObject } from "../utils";
 
 export default class Upload extends Component {
   constructor(props) {
     super(props);
+    this.fileInput = React.createRef();
+    this.focusFileInput = this.focusFileInput.bind(this);
   }
 
-  fileInput = React.createRef();
+  focusFileInput(event) {
+    this.fileInput.current.focus();
+    saveObject(this.fileInput.current.files[0]);
+  }
 
   render() {
-    console.log("this.props in Upload; ", this.props);
-    console.log(
-      "this.props.receiveFiles in Upload; ",
-      JSON.stringify(this.props.receiveFiles.getPhotos)
-    );
     return (
       <div>
-        <h1>this is Navbar? No, this is Patrick!</h1>
-        <button className="button">Submit</button>
-        <input className="file-upload-input"></input>
-        <input ref={this.fileInput}></input>
+        <label htmlFor="inputButton" className="button">
+          Which File?
+          <input
+            type="file"
+            id="inputButton"
+            ref={this.fileInput}
+            onChange={this.focusFileInput}
+          />
+        </label>
+        <label htmlFor="uploadButton" className="button">
+          Upload!
+          <input
+            type="submit"
+            id="uploadButton"
+            onClick={this.focusFileInput}
+          />
+        </label>
       </div>
     );
   }
 }
+// className="file-upload-input"
+
+// className="button"

@@ -14,13 +14,10 @@ export default class Navbar extends Component {
 
   render() {
     return (
-      <div>
-        <div className="navbar" />
-        <header
-          className="navbar-header"
-          onClick={() => this.props.goHome}
-        ></header>
-        <Upload receiveFiles={this.receiveFiles} />
+      <div className="navbar">
+        <header className="navbar-header" onClick={() => this.props.goHome()}>
+          <Upload receiveFiles={this.receiveFiles} />
+        </header>
       </div>
     );
   }

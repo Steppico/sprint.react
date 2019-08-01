@@ -1,8 +1,6 @@
 import React from "react";
 
 function SinglePhoto(props) {
-  console.log("In SinglePhoto; ", props);
-  // eslint-disable-next-line jsx-a11y/alt-text
   return (
     <img
       className="single-photo"
@@ -10,7 +8,6 @@ function SinglePhoto(props) {
       onClick={() => props.goHome()}
     />
   );
-  //   return <img className="single-photo" src={props.selectedPhoto} />;
 }
 
 export default SinglePhoto;

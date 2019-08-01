@@ -19,9 +19,11 @@ export default class App extends Component {
   componentDidMount() {
     return listObjects().then(imageObjects =>
       Promise.all(
-        imageObjects.map(imageObject =>
-          getSingleObject(imageObject.Key).then(imageName => imageName)
-        )
+        imageObjects
+          .slice(0, 10)
+          .map(imageObject =>
+            getSingleObject(imageObject.Key).then(imageName => imageName)
+          )
       ).then(imageNames => this.setState({ photos: imageNames }))
     );
   }
@@ -34,7 +36,6 @@ export default class App extends Component {
   };
 
   getPhotos = () => {
-    console.log("In the getPhotos Function; ", this.state.photos);
     return this.state.photos;
   };
 
@@ -46,15 +47,10 @@ export default class App extends Component {
   };
 
   render() {
-    console.log("some comment", this.state.currentView === "AllPhotos");
     return (
       <div className="app">
-        <Navbar
-          className="navbar"
-          goHome={this.goHome}
-          getPhotos={this.getPhotos}
-        />
-        <h1>REACT APP!</h1>
+        <Navbar goHome={this.goHome} getPhotos={this.getPhotos} />
+        <h2>Pick-a-Pic!</h2>
         {this.state.currentView === "AllPhotos" ? (
           <AllPhotos
             photos={this.state.photos}

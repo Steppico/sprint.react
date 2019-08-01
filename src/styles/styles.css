@@ -7,6 +7,8 @@ body {
 }
 
 .imageCell {
+  height: 100px;
+  width: 100px;
   display: inline;
   margin: 10px;
 }
@@ -16,5 +18,5 @@ body {
 }
 
 .single-photo {
-  width: 300px;
+  width: 100%;
 }
