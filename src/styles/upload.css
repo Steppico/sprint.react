@@ -1,29 +1,35 @@
 .button {
   height: 2rem;
   width: 4rem;
-  display: inline-block;
   text-align: center;
-  margin: 5px;
-  padding: 5px 5px;
-  border-radius: 5px;
+
   color: #000000;
   background: rgb(230, 230, 230);
   font-size: 12px;
   font-weight: bold;
-  border-style: none;
-  cursor: pointer;
 }
 
 .button:hover {
   border: solid 0.1px rgb(0, 0, 0);
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
-input {
-  position: absolute;
-  left: -99999999px;
+.input {
+  position: relative;
+  cursor: pointer;
+  margin: 5px;
+  color: white;
+  display: inline-block;
+}
+
+.submit {
+  height: 21px;
+  position: relative;
+  margin: 5px;
+  cursor: pointer;
+  display: inline-block;
 }
 
 button {
-  height: 2rem;
+  position: relative;
 }

@@ -50,7 +50,6 @@ export default class App extends Component {
     return (
       <div className="app">
         <Navbar goHome={this.goHome} getPhotos={this.getPhotos} />
-        <h2>Pick-a-Pic!</h2>
         {this.state.currentView === "AllPhotos" ? (
           <AllPhotos
             photos={this.state.photos}

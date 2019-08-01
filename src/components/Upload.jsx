@@ -11,30 +11,28 @@ export default class Upload extends Component {
   }
 
   focusFileInput(event) {
-    this.fileInput.current.focus();
-    saveObject(this.fileInput.current.files[0]);
+    this.fileInput.current.focus()
+      ? saveObject(this.fileInput.current.files[0])
+      : alert("Please select a file first");
   }
 
   render() {
     return (
       <div>
-        <label htmlFor="inputButton" className="button">
-          Which File?
-          <input
-            type="file"
-            id="inputButton"
-            ref={this.fileInput}
-            onChange={this.focusFileInput}
-          />
-        </label>
-        <label htmlFor="uploadButton" className="button">
-          Upload!
-          <input
-            type="submit"
-            id="uploadButton"
-            onClick={this.focusFileInput}
-          />
-        </label>
+        <input
+          className="input"
+          type="file"
+          ref={this.fileInput}
+          onChange={this.focusFileInput}
+        />
+        <input className="submit" type="submit" onClick={this.focusFileInput} />
+        <button
+          onClick={() => {
+            window.location.reload();
+          }}
+        >
+          Refresh
+        </button>
       </div>
     );
   }
