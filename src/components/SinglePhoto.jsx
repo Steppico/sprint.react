@@ -1,6 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
 
-function SinglePhoto(props) {
+const SinglePhoto = props => {
   return (
     <img
       className="single-photo"
@@ -8,6 +9,24 @@ function SinglePhoto(props) {
       onClick={() => props.goHome()}
     />
   );
-}
+};
 
-export default SinglePhoto;
+const mapStateToProps = state => {
+  return {
+    ...state
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    goHome: () =>
+      dispatch({
+        type: "UPDATE_VIEW",
+        payload: { currentView: "AllPhotos" }
+      })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SinglePhoto);

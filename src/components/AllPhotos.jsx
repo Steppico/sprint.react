@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import _ from "lodash";
+import { connect } from "react-redux";
 
-export default class AllPhotos extends Component {
-  constructor(props) {
-    super(props);
-    this.photos = this.props.photos;
-  }
-
+class AllPhotos extends Component {
   render() {
     return (
       <div>
@@ -26,3 +22,24 @@ export default class AllPhotos extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    ...state
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    selectPhoto: index =>
+      dispatch({
+        type: "UPDATE_VIEW",
+        payload: { currentView: "SinglePhoto", index: index }
+      })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AllPhotos);
